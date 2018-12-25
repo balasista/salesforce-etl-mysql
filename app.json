@@ -1,8 +1,8 @@
 {
-  "name": "Salesforce ETL MySQL",
-  "description": "Sample Salesforce ETL to MySQL",
-  "repository": "https://github.com/jamesward/salesforce-etl-mysql",
-  "website": "http://www.jamesward.com",
+  "name": "Aira cancelation SF ETL MySQL",
+  "description": "Aira cancelation SF ETL MySQL",
+  "repository": "https://github.com/balasista/salesforce-etl-mysql",
+  "website": "http://aira.io",
   "keywords": ["node", "salesforce", "etl", "mysql"],
   "addons": ["cleardb:ignite"]
 }

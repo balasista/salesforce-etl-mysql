@@ -2,13 +2,15 @@ let app = require('express')();
 let xmlparser = require('express-xml-bodyparser')({explicitArray: false});
 let mysql = require('mysql');
 
-let tableName = 'contact';
+let tableName = 'cancelation_tickets';
 
 function transform(sobject) {
   return {
     'id': sobject['sf:id'],
     'name': sobject['sf:firstname'] + ' ' + sobject['sf:lastname'],
-    'email': sobject['sf:email']
+    'email': sobject['sf:email'],
+    'case_reason':sobject['sf:case_reason'],
+    'case_subreason':sobject['sf:case_subreason']
   };
 }
 
@@ -17,7 +19,7 @@ let pool = mysql.createPool(process.env.CLEARDB_DATABASE_URL || 'mysql://root@lo
 // create the table if it doesn't exist
 pool.query(`SELECT * FROM ${tableName}`, function(err) {
   if ((err != null) && (err.code == 'ER_NO_SUCH_TABLE')) {
-    pool.query('create table contact (id VARCHAR(18) PRIMARY KEY, name VARCHAR(128), email VARCHAR(128))');
+    pool.query('create table cancelation_tickets (case_id VARCHAR(18) PRIMARY KEY, name VARCHAR(128), email VARCHAR(128),case_reason VARCHAR(128),case_subreason VARCHAR(128))');
   }
 });
 
